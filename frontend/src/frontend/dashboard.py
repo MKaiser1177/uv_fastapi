@@ -5,19 +5,15 @@ import os
 
 
 def get_backend_url() -> str:
-    backend_url = os.getenv("BACKEND_URL")
+    backend_url = os.getenv("BACKEND_URL", "").strip()
     if not backend_url:
         try:
-            backend_url = st.secrets["BACKEND_URL"]
+            backend_url = str(st.secrets.get("BACKEND_URL", "")).strip()
         except (FileNotFoundError, KeyError):
-            backend_url = None
+            backend_url = ""
 
     if not backend_url:
-        st.error(
-            "The backend URL is not configured. Add BACKEND_URL to Streamlit secrets "
-            "using the public URL of your deployed FastAPI service."
-        )
-        st.stop()
+        backend_url = "http://localhost:8000"
 
     return backend_url.rstrip("/")
 
