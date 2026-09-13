@@ -7,7 +7,7 @@ authors = [
     { name = "Vedant Agrawal", email = "2vedantagrawal@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = ["streamlit", "httpx" ]
+dependencies = ["streamlit", "httpx", "pandas" ]
 
 [project.scripts]
 frontend = "frontend:main"
