@@ -89,6 +89,21 @@ For macOS or Linux, the equivalent environment variable command is:
 BACKEND_URL=http://127.0.0.1:8000 uv run streamlit run src/frontend/dashboard.py
 ```
 
+## Deploy to Streamlit Cloud
+
+Streamlit Cloud cannot reach a backend running on your computer or at
+`127.0.0.1`. Deploy the FastAPI service separately, for example on Render,
+Railway, or Google Cloud Run, and copy its public HTTPS URL.
+
+In the Streamlit app settings, open **Settings > Secrets** and add:
+
+```toml
+BACKEND_URL = "https://your-backend.example.com"
+```
+
+The Streamlit app reads `BACKEND_URL` from secrets (or the environment), so
+the deployed frontend will send requests to the public FastAPI service.
+
 The frontend makes requests when the page loads. Keep the backend running while using the dashboard.
 
 ## Run with Docker Compose
