@@ -13,7 +13,7 @@ def get_backend_url() -> str:
             backend_url = ""
 
     if not backend_url:
-        backend_url = "http://localhost:8000"
+        backend_url = "https://pokemon-backend-frug.onrender.com"
 
     return backend_url.rstrip("/")
 
